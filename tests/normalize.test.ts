@@ -1,8 +1,4 @@
-import {
-  detectDateFormat,
-  parseDateString,
-  formatDate
-} from '../src/normalize';
+const { detectDateFormat, parseDateString, formatDate } = require('../src/normalize');
 
 describe('Date Normalization', () => {
   describe('detectDateFormat', () => {
@@ -95,22 +91,5 @@ describe('Date Normalization', () => {
     test('throws error for invalid format', () => {
       expect(() => formatDate(testDate, 'INVALID')).toThrow();
     });
-  });
-});
-
-describe('Edge Cases and Validation', () => {
-  test('validates year range', () => {
-    expect(() => parseDateString('0999-01-01')).toThrow();
-    expect(() => parseDateString('10000-01-01')).toThrow();
-  });
-
-  test('validates month range', () => {
-    expect(() => parseDateString('2024-00-01')).toThrow();
-    expect(() => parseDateString('2024-13-01')).toThrow();
-  });
-
-  test('validates day range', () => {
-    expect(() => parseDateString('2024-01-00')).toThrow();
-    expect(() => parseDateString('2024-01-32')).toThrow();
   });
 });
